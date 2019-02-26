@@ -108,3 +108,57 @@ library(readxl)
 #################################################
 sample_xls <- read_xls("data/sample.xls", sheet = 1, col_names = FALSE)
 sample_csv <- read_csv("data/sample2.csv")
+micro <- read_delim("data/micro_data.txt", delim = ",", col_names = F)
+
+
+df <- read_csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vQIGRAwCqdHohYKpkHNz10avinrvyoYKe0eSOol5_8wHxJEEfePoSwpyIiiku6JoDWXFQVDtqyMnBk-/pub?gid=0&single=true&output=csv")
+
+
+#벡터는 여기서 무엇?
+df$인상금액 == df[[6]]
+sum(df$인상금액 == df[[6]])
+
+is.numeric(df$`2018년_월정수당`)
+as.character(df$`2018년_월정수당`)
+class(df)
+
+
+head(df$인상금액)
+head(df$인상금액, 20)
+
+tail(df$증가율)
+length(df$인상금액)
+
+mean(df$`2018년_월정수당`)
+mean(df$`2019년_월정수당`)
+
+mean(df$`2019년_월정수당`) - mean(df$`2018년_월정수당`)
+
+summary(df$`2018년_월정수당`)
+summary(df)
+class(df$증가율)
+
+# 벡터는 한번에 처리
+test <- separate(sample_csv, col = 기간, c("start", "end"), sep = "~")
+test2 <- str_replace_all(sample_csv$기간, "\\.", "-")
+paste(df$시도, "(광역)")
+
+
+# 데이터프레임
+
+taltal <- data.frame(
+    names = c("배여운", "김원", "심서현"),
+    years = c(2, 8, 10),
+    gender = c("남", "남", "여")
+)
+
+units <- data.frame(
+    names = c("조혜경", "하남현"),
+    years = c(15, 10),
+    gender = c("여", "남")
+)
+
+member <- rbind(taltal, units)
+glimpse(member)
+str(member)
+
